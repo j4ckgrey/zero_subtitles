@@ -657,7 +657,7 @@ var resources = {
 var manifest_default = {
   id: "zero.subtitles",
   name: "Subtitles",
-  version: "1.0.0",
+  version: "1.0.1",
   description: "Subtitles from OpenSubtitles, SubDL and SubSource, matched to the version you play.",
   resources: ["subtitles"],
   types: ["movie", "series"],
@@ -674,21 +674,23 @@ var manifest_default = {
       { key: "opensubtitles_enabled", type: "toggle", label: "Use OpenSubtitles", default: true },
       {
         key: "opensubtitles_api_key",
+        showIf: { key: "opensubtitles_enabled", equals: true },
         type: "secret",
         label: "API key",
         description: "Required. opensubtitles.com \u2192 your profile \u2192 API consumers \u2192 New consumer."
       },
       {
         key: "opensubtitles_username",
+        showIf: { key: "opensubtitles_enabled", equals: true },
         type: "text",
         label: "Username",
         description: "Optional. Logging in raises the daily download limit from 5 to 20 or more."
       },
-      { key: "opensubtitles_password", type: "secret", label: "Password" },
+      { key: "opensubtitles_password", type: "secret", label: "Password", showIf: { key: "opensubtitles_enabled", equals: true } },
       { key: "subdl_enabled", type: "toggle", label: "Use SubDL", default: true },
-      { key: "subdl_api_key", type: "secret", label: "API key", description: "subdl.com \u2192 account \u2192 API key." },
+      { key: "subdl_api_key", type: "secret", label: "API key", description: "subdl.com \u2192 account \u2192 API key.", showIf: { key: "subdl_enabled", equals: true } },
       { key: "subsource_enabled", type: "toggle", label: "Use SubSource", default: true },
-      { key: "subsource_api_key", type: "secret", label: "API key", description: "subsource.net \u2192 account \u2192 API key." }
+      { key: "subsource_api_key", type: "secret", label: "API key", description: "subsource.net \u2192 account \u2192 API key.", showIf: { key: "subsource_enabled", equals: true } }
     ],
     actions: [{ id: "sources", label: "Subtitle providers" }],
     ui: {

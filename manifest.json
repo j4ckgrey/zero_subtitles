@@ -1,7 +1,7 @@
 {
   "id": "zero.subtitles",
   "name": "Subtitles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Subtitles from OpenSubtitles, SubDL and SubSource, matched to the version you play.",
   "resources": ["subtitles"],
   "types": ["movie", "series"],
@@ -18,21 +18,23 @@
       { "key": "opensubtitles_enabled", "type": "toggle", "label": "Use OpenSubtitles", "default": true },
       {
         "key": "opensubtitles_api_key",
+        "showIf": { "key": "opensubtitles_enabled", "equals": true },
         "type": "secret",
         "label": "API key",
         "description": "Required. opensubtitles.com → your profile → API consumers → New consumer."
       },
       {
         "key": "opensubtitles_username",
+        "showIf": { "key": "opensubtitles_enabled", "equals": true },
         "type": "text",
         "label": "Username",
         "description": "Optional. Logging in raises the daily download limit from 5 to 20 or more."
       },
-      { "key": "opensubtitles_password", "type": "secret", "label": "Password" },
+      { "key": "opensubtitles_password", "type": "secret", "label": "Password", "showIf": { "key": "opensubtitles_enabled", "equals": true } },
       { "key": "subdl_enabled", "type": "toggle", "label": "Use SubDL", "default": true },
-      { "key": "subdl_api_key", "type": "secret", "label": "API key", "description": "subdl.com → account → API key." },
+      { "key": "subdl_api_key", "type": "secret", "label": "API key", "description": "subdl.com → account → API key.", "showIf": { "key": "subdl_enabled", "equals": true } },
       { "key": "subsource_enabled", "type": "toggle", "label": "Use SubSource", "default": true },
-      { "key": "subsource_api_key", "type": "secret", "label": "API key", "description": "subsource.net → account → API key." }
+      { "key": "subsource_api_key", "type": "secret", "label": "API key", "description": "subsource.net → account → API key.", "showIf": { "key": "subsource_enabled", "equals": true } }
     ],
     "actions": [{ "id": "sources", "label": "Subtitle providers" }],
     "ui": {
